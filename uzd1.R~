@@ -1,0 +1,12 @@
+library(exactRankTests)
+dt1 <- read.csv("dt1.csv")
+
+### 1 Uzduotis
+wt1 <- wilcox.exact(dt1$before, dt1$after, alternative = "two.sided",
+                   paired = TRUE) #Does not work with zero values
+wt2 <- wilcox.test(dt1$before, dt1$after, alternative = "two.sided",
+                   paired = TRUE)
+dif <- dt1$before-dt1$after
+dif <- dif[dif!=0]
+wt2 <- wilcox.test(dif, extract = TRUE)
+
