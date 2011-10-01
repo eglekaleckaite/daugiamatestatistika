@@ -9,15 +9,27 @@ wt2 <- wilcox.test(dt1$before, dt1$after, alternative = "two.sided",
 
 ### 2 Uzduotis
 ##???
-x1 <- dt1$after
-x2 <- dt1$leadership
+n <- 10
+x1 <- dt1$before
+x2 <-dt1$after
+x3 <- dt1$leadership
 rx1 <- rank(x1)-5.5
 rx2 <- rank(x2)-5.5
-sr <- sum(rx1*rx2)
+rx3 <- rank(x3)-5.5
+sr1 <- sum(rx1*rx3)
+sr2 <- sum(rx2*rx3)
 sqrx1 <- sum(rx1^2)
 sqrx2 <- sum(rx2^2)
-rs <- sr/sqrt(sqrx1*sqrx2)
-cor.test(dt1$after, dt1$leadership, method = "spearman")
+sqrx3 <- sum(rx3^2)
+rs1 <- sr1/sqrt(sqrx1*sqrx3)
+rs2 <- sr2/sqrt(sqrx2*sqrx3)
+t1 <- rs1*sqrt((n-2)/(1-rs1^2))
+t2 <- rs2*sqrt((n-2)/(1-rs2^2))
+
+
+
+
+cor.test(dt1$before, dt1$leadership, method = "spearman")
 
 
 ### 3 Uzduotis
